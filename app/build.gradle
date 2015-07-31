@@ -1,0 +1,37 @@
+apply plugin: 'com.android.model.application'
+
+model {
+    android {
+        compileSdkVersion = 22
+        buildToolsVersion = "22.0.1"
+
+        defaultConfig.with {
+            applicationId = "mrconst.info.ndktest"
+            minSdkVersion.apiLevel =  15
+            targetSdkVersion.apiLevel = 22
+            versionCode = 1
+            versionName = "1.0"
+        }
+    }
+
+    compileOptions.with {
+        sourceCompatibility = JavaVersion.VERSION_1_7
+        targetCompatibility = JavaVersion.VERSION_1_7
+    }
+
+    android.ndk {
+        moduleName = "ndktestmod"
+    }
+
+    android.buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles += file('proguard-rules.pro')
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.1'
+}
